@@ -31,6 +31,8 @@ jobs:
         jupyter nbconvert --to html --execute analysis.ipynb --output index.html
 
     - name: Commit and push HTML output
+      env:
+        TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'actions@github.com'
