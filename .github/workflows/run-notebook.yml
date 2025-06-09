@@ -31,7 +31,7 @@ jobs:
 
     - name: Execute notebook and convert to HTML
       run: |
-        jupyter nbconvert --to html --execute analysis.ipynb --output index.html
+        jupyter nbconvert --to html --execute analysis.ipynb --output index.html --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_input_tags='["hide_input"]'
 
     - name: Commit and push changes
       run: |
