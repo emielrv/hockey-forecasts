@@ -1,0 +1,8 @@
+pymc
+matplotlib
+pandas
+numpy
+requests
+seaborn
+arviz
+nbconvert
