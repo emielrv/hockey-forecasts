@@ -31,7 +31,6 @@ jobs:
 
     - name: Execute notebook and convert to HTML
       run: |
-        jupyter nbextension enable --py widgetsnbextension
         jupyter nbconvert --to html --execute analysis.ipynb --output index.html
 
     - name: Commit and push changes
