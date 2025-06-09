@@ -36,6 +36,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'actions@github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/emielrv/hockey-forecasts.git
         git add index.html
         git commit -m "Automated weekly update of notebook output [skip ci]" || echo "No changes to commit"
         git push
