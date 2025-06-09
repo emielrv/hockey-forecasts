@@ -1,5 +1,8 @@
 name: Run Notebook Weekly
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 7 * * 1'  # Every Monday at 07:00 UTC
@@ -30,13 +33,11 @@ jobs:
       run: |
         jupyter nbconvert --to html --execute analysis.ipynb --output index.html
 
-    - name: Commit and push HTML output
-      env:
-        TOKEN: ${{ secrets.PAT_TOKEN }}
+    - name: Commit and push changes
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'actions@github.com'
-        git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/emielrv/hockey-forecasts.git
-        git add index.html
-        git commit -m "Automated weekly update of notebook output [skip ci]" || echo "No changes to commit"
-        git push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Automated weekly update of notebook output [skip ci]" || echo "No changes to commit"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/emielrv/hockey-forecasts.git
+          git push origin main
